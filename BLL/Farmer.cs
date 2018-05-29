@@ -53,6 +53,13 @@ namespace BLL
             this.UserPassword = userPaswordPrm;
         }
 
+        //Constructor for registration
+        public Farmer(string userUsernamePrm = "Admin")
+                : base()
+        {
+            this.UserUsername = userUsernamePrm;
+        }
+
         public Farmer()
         {
 
@@ -154,6 +161,22 @@ namespace BLL
 
             return dataList;
         }
+        //Used to check username avability
+        public List<Farmer> getUsernames()
+        {
+            List<Farmer> dataList = new List<Farmer>();
+            Datahandler handler = new Datahandler();
+            DataTable dataRaw = handler.getUserInformation();
+
+            foreach (DataRow dataItem in dataRaw.Rows)
+            {
+                dataList.Add(
+                    new Farmer(dataItem["UserUsername"].ToString()));
+            }
+
+            return dataList;
+        }
+
         #endregion
     }
     #endregion
