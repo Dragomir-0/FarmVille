@@ -8,5 +8,6 @@ namespace BLL
 {
     class Changebles
     {
+    	public const char splitOn = ',';
     }
 }

@@ -18,13 +18,42 @@ namespace FarmVille
 
 		//Animal+Amount
 
-		public void SaveThis(List<Animal> animals, Farm farm)
+		public void SaveThis(List<string> animals, Farm farm)
 		{
-			List<string> writeMetaData = new List<string>();
-			foreach(Animal a in animals)
+			List<string> dataToSave = new List<string>();
+
+			string fileDirectory = 
+				Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\";
+			string filePath = fileDirectory + farm.FarmName + "Save.txt";
+			FileHandler saveData = new FileHandler(filePath);
+
+			dataToSave.Add(Farm.FarmName + Change.splitOn + Farm.FarmSize);
+			foreach(string a in animals)
 			{
-				writeMetaData.Add();
-			}	
+				dataToSave.Add(a);
+			}
+
+			saveData.WriteDataToTXT(dataToSave);
+
+		}
+
+		public void SaveThis(List<string> animals, Farm farm)
+		{
+			List<string> dataToSave = new List<string>();
+
+			string fileDirectory = 
+				Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\";
+			string filePath = fileDirectory + farm.FarmName + "Save.txt";
+			FileHandler saveData = new FileHandler(filePath);
+
+			dataToSave.Add(Farm.FarmName + ChangeAbles.splitOn + Farm.FarmSize);
+			foreach(string a in animals)
+			{
+				dataToSave.Add(a);
+			}
+
+			saveData.WriteDataToTXT(dataToSave);
+
 		}
 
 	}
