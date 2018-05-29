@@ -28,7 +28,7 @@ namespace FarmVille
 			string filePath = fileDirectory + farm.FarmName + "Save.txt";
 			FileHandler saveData = new FileHandler(filePath);
 
-			dataToSave.Add(Farm.FarmName + Change.splitOn + Farm.FarmSize);
+			dataToSave.Add(farm.FarmName + Changebles.splitOn + farm.Size);
 			foreach(string a in animals)
 			{
 				dataToSave.Add(a);
