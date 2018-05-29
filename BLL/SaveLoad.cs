@@ -37,22 +37,18 @@ namespace FarmVille
 
 		}
 
-		public void SaveThis(List<string> animals, Farm farm)
+		public List<string> LoadThis(string farmName)
 		{
-			List<string> dataToSave = new List<string>();
+			
 
 			string fileDirectory = 
 				Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\";
-			string filePath = fileDirectory + farm.FarmName + "Save.txt";
-			FileHandler saveData = new FileHandler(filePath);
+			string filePath = fileDirectory + farmName + "Save.txt";
+			FileHandler retriveData = new FileHandler(filePath);
 
-			dataToSave.Add(Farm.FarmName + ChangeAbles.splitOn + Farm.FarmSize);
-			foreach(string a in animals)
-			{
-				dataToSave.Add(a);
-			}
+			
 
-			saveData.WriteDataToTXT(dataToSave);
+			return retriveData.ReadDataFromTXT();
 
 		}
 

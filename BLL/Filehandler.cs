@@ -7,37 +7,88 @@ using System.IO;
 
 namespace BLL
 {
-    class Filehandler
+    public class FileHandler
     {
-        #region Paramators
-        private string filepath;
+        private string filePath;
         private FileStream stream;
         private StreamReader reader;
         private StreamWriter writer;
 
-        public Filehandler(string filepathP = " Problem.txt")
+        public FileHandler(string filePathParam = "Problem.txt")
         {
-            this.filepath = filepathP;
-        }
-        #endregion
-
-        #region WriteMethods
-
-        public void writeToText(List<string> datalist)
-        {
-
+            this.filePath = filePathParam;
         }
 
+        public void WriteDataToTXT(List<string> dataToWrite)
+        {
 
-        #endregion
+            try
+            {
+                if (File.Exists(this.filePath))
+                {
+                    stream = new FileStream(this.filePath, FileMode.Open, FileAccess.Write);
+                }
+                else
+                {
+                    stream = new FileStream(this.filePath, FileMode.Create, FileAccess.Write);
+                }
 
-        #region ReadMethod
-public List<string> ReadFromText()
-{
+                writer = new StreamWriter(stream);
 
-}
-        #endregion
+                foreach (string itemToWrite in dataToWrite)
+                {
+                    if (writer.BaseStream == null)
+                    {
+                        throw new WriteException();
+                    }
+
+                    writer.WriteLine(itemToWrite);
+
+                    writer.Flush();
+                }
+            }
+            catch (WriteException)
+            {
+
+                throw;
+            }
+            finally
+            {
+                writer.Close();
+                stream.Close();
+            }
 
 
+        }
+
+        public List<string> ReadDataFromTXT()
+        {
+            List<string> dataRaw = new List<string>();
+            try
+            {
+                if (File.Exists(this.filePath))
+                {
+                    stream = new FileStream(this.filePath, FileMode.Open, FileAccess.Read);
+                    reader = new StreamReader(stream);
+
+                    while (!reader.EndOfStream)
+                    {
+                        dataRaw.Add(reader.ReadLine());
+                    }
+                }
+            }
+            catch (ReadException)
+            {
+
+                throw;
+            }
+            finally
+            {
+                reader.Close();
+                stream.Close();
+            }
+
+            return dataRaw;
+        }
     }
 }
