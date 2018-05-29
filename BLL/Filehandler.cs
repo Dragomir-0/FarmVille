@@ -15,7 +15,7 @@ namespace BLL
         private StreamReader reader;
         private StreamWriter writer;
 
-        public Filehandler(string filepathP = " Problem.csv")
+        public Filehandler(string filepathP = " Problem.txt")
         {
             this.filepath = filepathP;
         }
@@ -28,15 +28,14 @@ namespace BLL
 
         }
 
-        public void writeToCsv(List<string> datalist)
-        {
-
-        }
 
         #endregion
 
         #region ReadMethod
+public List<string> ReadFromText()
+{
 
+}
         #endregion
 
 
