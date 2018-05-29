@@ -20,6 +20,22 @@ namespace BLL
             string newStringDate = string.Format($"{day}-{month}-{year}");
             return newStringDate;
         }
+
+        //Used to test for invalid chars
+        public static bool TestForSpecialChars(this string testSpecials)
+        {
+            
+            foreach (char stringLetter in testSpecials)
+            {
+                foreach (char invalids in Changebles.invalidChars)
+                {
+                    if(stringLetter == invalids) return true;
+                }
+            }
+
+            return true;
+
+        }
     }
 
 }
