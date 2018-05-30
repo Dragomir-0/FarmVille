@@ -21,7 +21,7 @@ namespace BLL
 
 
         public Farmer(string userPaswordPrm = "Qwerty1234", string UserUsernamePrm = "GameTag",
-            int userID = 1, string userNamePrm = "Micheal", string userSurnamePrm = "Knight", string genderPrm = "Male", string dateOfBrothPrm = "17-06-1952")
+            int userID = 1, string userNamePrm = "Micheal", string userSurnamePrm = "Knight", string genderPrm = "Male", string dateOfBirthPrm = "17-06-1952")
                 : base(userID, userNamePrm, userSurnamePrm, genderPrm, dateOfBirthPrm)
         {
 
@@ -30,7 +30,7 @@ namespace BLL
         }
 
         public Farmer(string userPaswordPrm = "Qwerty1234", string UserUsernamePrm = "GameTag",
-                 string userNamePrm = "Micheal", string userSurnamePrm = "Knight", string genderPrm = "Male", string dateOfBrothPrm = "17-06-1952")
+                 string userNamePrm = "Micheal", string userSurnamePrm = "Knight", string genderPrm = "Male", string dateOfBirthPrm = "17-06-1952")
                  : base(userNamePrm, userSurnamePrm, genderPrm, dateOfBirthPrm)
         {
             Farmer f = new Farmer(userPaswordPrm, UserUsernamePrm);
@@ -153,7 +153,7 @@ namespace BLL
             userParams.Add(this.Gender);
             userParams.Add(this.UserPassword);
             userParams.Add(this.UserUsername);
-            userParams.Add(this.DateOfBirth)
+            userParams.Add(this.BirthDate.convertDateToStringDDMMYYYY())
 
             Datahandler handler = new Datahandler();
             handler.InsertUser(userParams);
