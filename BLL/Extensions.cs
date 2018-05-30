@@ -47,6 +47,30 @@ namespace BLL
             return dateTime;
 
         }
+
+        public static DateTime ToDateTimeDTP(this string dateTimeString)
+        {
+        	DateTime dateTime;
+        	string[] date = dateTimeString.Split(' ');
+        	if(date[1].Equals("January")) dateTime 		= new DateTime(int.Parse(date[2],1,date[0]));
+        	if(date[1].Equals("Febuary")) dateTime 		= new DateTime(int.Parse(date[2],2,date[0]));
+        	if(date[1].Equals("March")) dateTime 		= new DateTime(int.Parse(date[2],3,date[0]));
+
+        	if(date[1].Equals("April")) dateTime 		= new DateTime(int.Parse(date[2],4,date[0]));
+        	if(date[1].Equals("May")) dateTime 			= new DateTime(int.Parse(date[2],5,date[0]));
+        	if(date[1].Equals("June")) dateTime 		= new DateTime(int.Parse(date[2],6,date[0]));
+
+        	if(date[1].Equals("July")) dateTime 		= new DateTime(int.Parse(date[2],7,date[0]));
+        	if(date[1].Equals("August")) dateTime 		= new DateTime(int.Parse(date[2],8,date[0]));
+        	if(date[1].Equals("September")) dateTime 	= new DateTime(int.Parse(date[2],9,date[0]));
+
+        	if(date[1].Equals("November")) dateTime 	= new DateTime(int.Parse(date[2],10,date[0]));
+        	if(date[1].Equals("October")) dateTime 		= new DateTime(int.Parse(date[2],11,date[0]));
+        	if(date[1].Equals("December")) dateTime 	= new DateTime(int.Parse(date[2],12,date[0]));
+        	return dateTime;
+
+
+        }
     }
 
 }
