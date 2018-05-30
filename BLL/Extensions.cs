@@ -21,19 +21,30 @@ namespace BLL
             return newStringDate;
         }
 
-        //Used to test for invalid chars
-        public static bool TestForSpecialChars(this string testSpecials)
+        public static bool TestForSpecialChars(this String testSpecials)
         {
-            
+
             foreach (char stringLetter in testSpecials)
             {
                 foreach (char invalids in Changebles.invalidChars)
                 {
-                    if(stringLetter == invalids) return true;
+                    if (stringLetter == invalids) return true;
                 }
             }
 
             return true;
+
+
+        }
+
+
+        public static DateTime ToDateTime(this string dateTimeString)
+        {
+            // 31-01-2012
+
+            string[] date = dateTimeString.Split('-');
+            DateTime dateTime = new DateTime(int.Parse(date[2]), int.Parse(date[1]), int.Parse(date[0]));
+            return dateTime;
 
         }
     }

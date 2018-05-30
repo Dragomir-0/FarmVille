@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BLL
 {
-    class Changebles
+    public class Changebles
     {
     	public const char splitOn = ',';
 
-    	public static char[] invalidChars = new char[] { '/', '_', '-', '*', '!', '<', '>', ';', ':', '.', ',', '+' };
+        public static char[] invalidChars = new char[] { '/', '_', '-', '*', '!', '<', '>', ';', ':', '.', ',', '+' };
     }
 }

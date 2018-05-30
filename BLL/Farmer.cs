@@ -18,19 +18,30 @@ namespace BLL
         #endregion
 
         #region Constructor
-      
-       
-        public Farmer(string userPaswordPrm = "Admin", string UserUsernamePrm = "Admin",
-            int userID = 1, string userNamePrm = "Admin", string userSurnamePrm = "Ruler", string genderPrm = "Male")
-                :base (userID, userNamePrm, userSurnamePrm, genderPrm)
+
+
+        public Farmer(string userPaswordPrm = "Qwerty1234", string UserUsernamePrm = "GameTag",
+            int userID = 1, string userNamePrm = "Micheal", string userSurnamePrm = "Knight", string genderPrm = "Male", string dateOfBrothPrm = "17-06-1952")
+                : base(userID, userNamePrm, userSurnamePrm, genderPrm, dateOfBrothPrm)
         {
-            
+
             this.UserUsername = UserUsernamePrm;
             this.UserPassword = userPaswordPrm;
         }
 
-        public Farmer(string userPaswordPrm="Admin", string UserUsernamePrm = "Admin", 
-            string userNamePrm = "Admin", string userSurnamePrm = "Ruler")
+        public Farmer(string userPaswordPrm = "Qwerty1234", string UserUsernamePrm = "GameTag",
+                 string userNamePrm = "Micheal", string userSurnamePrm = "Knight", string genderPrm = "Male", string dateOfBrothPrm = "17-06-1952")
+                 : base(userNamePrm, userSurnamePrm, genderPrm, dateOfBrothPrm)
+        {
+            Farmer f = new Farmer(userPaswordPrm, UserUsernamePrm);
+
+            this.UserID = f.GetHashCode();
+            this.UserUsername = UserUsernamePrm;
+            this.UserPassword = userPaswordPrm;
+        }
+
+        public Farmer(string userPaswordPrm= "Qwerty1234", string UserUsernamePrm = "GameTag", 
+            string userNamePrm = "Micheal", string userSurnamePrm = "Knight")
                 :base (userNamePrm, userSurnamePrm)
         {
             Farmer f = new Farmer(userPaswordPrm, UserUsernamePrm);
@@ -39,14 +50,14 @@ namespace BLL
             this.UserUsername = UserUsernamePrm;
             this.UserPassword = userPaswordPrm;
         }
-        public Farmer(string userPaswordPrm = "Admin", string UserUsernamePrm = "Admin", string userNamePrm = "Admin")
+        public Farmer(string userPaswordPrm = "Qwerty1234", string UserUsernamePrm = "GameTag", string userNamePrm = "Micheal")
                 : base()
         {
             this.UserUsername = UserUsernamePrm;
             this.UserPassword = userPaswordPrm;
             this.UserName = userNamePrm;
         }
-        public Farmer(string userUsernamePrm = "Admin",string userPaswordPrm = "Admin")
+        public Farmer(string userUsernamePrm = "GameTag", string userPaswordPrm = "Qwerty1234")
                 : base()
         {
             this.UserUsername = userUsernamePrm;
@@ -54,7 +65,7 @@ namespace BLL
         }
 
         //Constructor for registration
-        public Farmer(string userUsernamePrm = "Admin")
+        public Farmer(string userUsernamePrm = "GameTag")
                 : base()
         {
             this.UserUsername = userUsernamePrm;
