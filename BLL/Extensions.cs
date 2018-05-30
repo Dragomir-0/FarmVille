@@ -74,3 +74,16 @@ namespace BLL
     }
 
 }
+
+
+/*
+Lamda
+Delegate
+Threading
+Sockets
+Links
+serialization binary XML ++ and theory
+FileHander + DataHandler ++
+Server 10 marks+
+
+
