@@ -8,6 +8,13 @@ namespace BLL
 {
     public static class Extensions
     {
+    	
+    	 public static string SplitInfo(this string info, int chosenArrayPosition)
+        {
+            string[] lines = info.Split(',');
+            return lines[chosenArrayPosition];
+        }
+
         public static string convertDateToStringDDMMYYYY(this DateTime dateTime)
         {
             string[] YYYYMMDD = dateTime.ToString().Split(' ');
