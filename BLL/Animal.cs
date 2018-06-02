@@ -100,7 +100,7 @@ namespace BLL
         }
         public override string ToString()
         {
-            return this.AnimalSpecies+","+this.AnimalType+","+this.AnimalSize+","+this.AnimalLifespan+","+this.AnimalBreedingRate;
+            return this.AnimalID+","this.AnimalSpecies+","+this.AnimalType+","+this.AnimalSize+","+this.AnimalLifespan+","+this.AnimalBreedingRate;
         }
         #endregion
 
