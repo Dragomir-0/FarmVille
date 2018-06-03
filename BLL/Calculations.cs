@@ -9,7 +9,18 @@ namespace BLL
 	#region Exstra Math
     public partial class Calculations
     {
-       
+       public string CreateGender()
+        {
+            Random randomGen = new Random();
+            if (randomGen.Next(2)==0) return "Female";
+            return "Male";
+            
+        }
+        public string CreateDateOfBirth()
+        {
+            DateTime dateTime = DateTime.Now;
+            return dateTime.convertDateToStringDDMMYYYY();
+        }
     }
     #endregion
 
@@ -242,6 +253,53 @@ namespace BLL
             return coOrdinateList;
         }
 
+
+public void HandleNewAnimals(List<string> farmInfoList , string farmName)
+        {
+
+            int amountOfAnimals = int.Parse(farmInfoList[2]);
+            switch (amountOfAnimals)
+            {
+                case 3:
+                    {
+                        for (int counter = amountOfAnimals; counter <= amountOfAnimals+2; counter++)
+                        {
+                            for (int i = 0; i <= int.Parse(farmInfoList[counter].SplitInfo(1)); i++)
+                            {
+                                UserFarm userFarm = new UserFarm(farmName, CreateGender(), CreateDateOfBirth());
+                                userFarm.InsertFarmAnimal(farmInfoList[counter].SplitInfo(0));
+                            }
+                        }
+                       
+                    } break;
+                case 4:
+                    {
+                        for (int counter = amountOfAnimals; counter <= amountOfAnimals + 2; counter++)
+                        {
+                            for (int i = 0; i <= int.Parse(farmInfoList[counter].SplitInfo(1)); i++)
+                            {
+                                UserFarm userFarm = new UserFarm(farmName, CreateGender(), CreateDateOfBirth());
+                                userFarm.InsertFarmAnimal(farmInfoList[counter].SplitInfo(0));
+                            }
+                        }
+                    } break;
+                case 5:
+                    {
+                        for (int counter = amountOfAnimals; counter <= amountOfAnimals + 2; counter++)
+                        {
+                            for (int i = 0; i <= int.Parse(farmInfoList[counter].SplitInfo(1)); i++)
+                            {
+                                UserFarm userFarm = new UserFarm(farmName, CreateGender(), CreateDateOfBirth());
+                                userFarm.InsertFarmAnimal(farmInfoList[counter].SplitInfo(0));
+                            }
+                        }
+                    } break;
+                default:
+                    break;
+            }
+            
+
+        }
 
         
     }
