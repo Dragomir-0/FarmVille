@@ -153,7 +153,7 @@ namespace BLL
             userParams.Add(this.Gender);
             userParams.Add(this.UserPassword);
             userParams.Add(this.UserUsername);
-            userParams.Add(this.BirthDate.convertDateToStringDDMMYYYY())
+            userParams.Add(this.BirthDate.convertDateToStringDDMMYYYY());
 
             Datahandler handler = new Datahandler();
             handler.InsertUser(userParams);

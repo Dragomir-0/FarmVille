@@ -15,12 +15,21 @@ namespace BLL
         private string gender;
         private DateTime birthDate;
 
-        
+
 
         #endregion
 
         #region Constructor
-        public Person(int userIDPrm = 1, string userNamePrm = "Micheal", string userSurnamePrm = "Knight", string genderPrm="Male",string birthDatePrm="17-06-1952")
+        public Person(int userIDPrm = 1, string userNamePrm = "Micheal", string userSurnamePrm = "Knight", string genderPrm = "Male", string birthDatePrm = "17-06-1952")
+        {
+            this.UserID = userIDPrm;
+            this.UserName = UserName;
+            this.UserSurname = UserSurname;
+            this.Gender = genderPrm;
+            this.BirthDate = birthDatePrm.ToDateTime();
+        }
+
+        public Person(string userNamePrm = "Micheal", string userSurnamePrm = "Knight", string genderPrm = "Male", string birthDatePrm = "17-06-1952")
         {
             this.UserID = userIDPrm;
             this.UserName = UserName;
