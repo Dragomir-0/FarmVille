@@ -40,6 +40,12 @@ namespace BLL
             this.AnimalGender = animalGenderPrm;
             this.AnimalDateofBirth = animalDateofBirthPrm;
         }
+        public UserFarm(string farmNamePrm,string animalGenderPrm, string animalDateofBirthPrm)
+            : base(farmNamePrm)
+        {
+            this.AnimalGender = animalGenderPrm;
+            this.AnimalDateofBirth = animalDateofBirthPrm;
+        }
         public UserFarm(string farmNamePrm, int sizePrm,string animalGenderPrm, string animalDateofBirthPrm)
             :base( farmNamePrm, sizePrm)
         {
