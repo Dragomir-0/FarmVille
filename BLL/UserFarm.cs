@@ -107,7 +107,7 @@ namespace BLL
             userParams.Add(this.FarmName);
 
             Datahandler handler = new Datahandler();
-            handler.InsertFarm(userParams);
+            handler.InsertFarmAnimal(userParams);
         }
 
         public List<UserFarm> getFarmAnimals()
@@ -137,7 +137,7 @@ namespace BLL
             userParams.Add(this.AnimalDateofBirth);
 
             Datahandler handler = new Datahandler();
-            handler.InsertFarm(userParams);
+            handler.DeleteDeadAnimal(userParams);
         }
 
         /*
