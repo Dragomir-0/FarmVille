@@ -158,20 +158,20 @@ namespace BLL
             Datahandler handler = new Datahandler();
             handler.InsertUser(userParams);
         }
-        public List<Farmer> getUserInformation()
+        public Farmer getUserInformation()
         {
             List<Farmer> dataList = new List<Farmer>();
             Datahandler handler = new Datahandler();
-            DataTable dataRaw = handler.getUserInformation();
+            DataTable dataRaw = handler.getUserInformation(this.UserUsername,this.UserPassword);
 
             foreach (DataRow dataItem in dataRaw.Rows)
             {
-                dataList.Add(
-                    new Farmer(dataItem["UserUsername"].ToString(),
-                               dataItem["UserPassword"].ToString()));
+                Farmer farmer =  new Farmer(dataItem["UserUsername"].ToString(),
+                                           dataItem["UserPassword"].ToString());
+                return farmer;
             }
 
-            return dataList;
+            return null;
         }
         //Used to check username avability
         public List<Farmer> getUsernames()

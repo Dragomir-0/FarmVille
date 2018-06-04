@@ -28,7 +28,7 @@ namespace DAL
 
         #region RetrieveData
        //Farmer Class
-        DataTable getUserInformation();
+        DataTable getUserInformation(string userName, string userPassword);
         //Animal Class
         DataTable getAnimalsNameAndType();
         DataTable getAnimalInfo(int animalID);

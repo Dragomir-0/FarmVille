@@ -219,7 +219,7 @@ namespace DAL
             return datatable;
         }
 
-        public DataTable getUserInformation()
+        public DataTable getUserInformation(string userName, string userPassword)
         {
             string StoredProcedureName = "UserInformation";
 
@@ -232,7 +232,9 @@ namespace DAL
 
                 command = new SqlCommand(StoredProcedureName, connection);
                 command.CommandType = CommandType.StoredProcedure;
-                
+                command.Parameters.Add(new SqlParameter("@Username", userName));
+                command.Parameters.Add(new SqlParameter("@Password", userPassword));
+
                 adapter = new SqlDataAdapter(command);
                 datatable = new DataTable();
                 adapter.Fill(datatable);
