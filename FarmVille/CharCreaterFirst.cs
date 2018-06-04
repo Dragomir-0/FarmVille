@@ -190,6 +190,24 @@ namespace FarmVille
             else if (shirt == 1) { lblOutfitText.Text = " Blue"; shirt = 0; }
             else if (shirt == 2) { lblOutfitText.Text = "Green"; shirt = 1; }
         }
+
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            SaveLoad saveConfig = new SaveLoad();
+
+            
+            
+        }
+
+        //public string CharConfig()
+        //{
+        //    //Gendar 
+        //    //Char
+        //    //Shirt
+        //    //BackColour
+        //    string GenCharShirBack = 
+            
+        //}
     }
 }
 

@@ -11,7 +11,7 @@ namespace BLL
     	
     	 public static string SplitInfo(this string info, int chosenArrayPosition)
         {
-            string[] lines = info.Split(',');
+            string[] lines = info.Split(Changebles.splitOn);
             return lines[chosenArrayPosition];
         }
 
@@ -77,6 +77,16 @@ namespace BLL
         	return dateTime;
 
 
+        }
+
+        public static string ToCharFile(this string dataToConvert)
+        {
+            string charToSave;
+
+
+
+
+            return charToSave;
         }
     }
 

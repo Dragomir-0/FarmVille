@@ -19,12 +19,12 @@ namespace FarmVille
 
 		//Animal+Amount
 
-		public void SaveThis(List<string> animals, Farm farm)
+		public void SaveThis(List<string> animals, Farm farm, Farmer farmer)
 		{
 			List<string> dataToSave = new List<string>();
 
 			string fileDirectory = 
-				Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\";
+				Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Farmville\\" + farmer.UserUsername + "\\";
 			string filePath = fileDirectory + farm.FarmName + "Save.txt";
 			FileHandler saveData = new FileHandler(filePath);
 
@@ -38,12 +38,12 @@ namespace FarmVille
 
 		}
 
-		public List<string> LoadThis(string farmName)
+		public List<string> LoadThis(string farmName, Farmer farmer)
 		{
 			
 
 			string fileDirectory = 
-				Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\";
+				Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Farmville\\" + farmer.UserUsername + "\\";
 			string filePath = fileDirectory + farmName + "Save.txt";
 			FileHandler retriveData = new FileHandler(filePath);
 
@@ -53,5 +53,30 @@ namespace FarmVille
 
 		}
 
-	}
+        public void SaveThisChar(string save, Farmer farmer)
+        {
+            string fileDirectory =
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Farmville\\" + farmer.UserUsername + "\\";
+            string filePath = fileDirectory + farmer.UserUsername + "Save.txt";
+            FileHandler saveData = new FileHandler(filePath);
+            List<string> saveThisLine = new List<string> { save };
+            saveData.WriteDataToTXT(saveThisLine);
+
+
+        }
+
+        public string LoadThisChar(Farmer farmer)
+        {
+            string fileDirectory =
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Farmville\\" + farmer.UserUsername + "\\";
+            string filePath = fileDirectory + farmer.UserUsername + "Save.txt";
+            FileHandler readData = new FileHandler(filePath);
+
+            List<string> dataReadFromSaveFile = readData.ReadDataFromTXT();
+
+            return dataReadFromSaveFile[0];
+
+        }
+
+    }
 }
