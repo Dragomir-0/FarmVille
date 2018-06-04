@@ -17,11 +17,13 @@ namespace FarmVille
         Pen myPen = new Pen(Color.Black);
         Graphics g = null;
         Farm farmWorkingWith;
+        Farmer farmerWorkingWith;
 
-        public DisplayFarm(Farm farmRecived)
+        public DisplayFarm(Farm farmRecived, Farmer farmerRecived)
         {
             InitializeComponent();
             farmWorkingWith = farmRecived;
+            farmerWorkingWith = farmerRecived;
             Paint();
 
             //frm.Show();
@@ -66,7 +68,7 @@ namespace FarmVille
         private void Paint()
         {
             SaveLoad saveLoad = new SaveLoad();
-            List<string> getFarmInfo = saveLoad.LoadThis(farmWorkingWith.FarmName);
+            List<string> getFarmInfo = saveLoad.LoadThis(farmWorkingWith.FarmName, farmerWorkingWith);
             Calculations algorithm = new Calculations();
             List<string> theCoOrdinate = algorithm.createTheFarm(getFarmInfo);
             //algorithm.HandleNewAnimals(getFarmInfo);

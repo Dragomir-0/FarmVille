@@ -50,3 +50,4 @@ C:\Users\User\Desktop\Finale\FarmVille\FarmVille\obj\Debug\FarmVille.csproj.Gene
 C:\Users\User\Desktop\Finale\FarmVille\FarmVille\obj\Debug\FarmVille.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\Finale\FarmVille\FarmVille\obj\Debug\FarmVille.exe
 C:\Users\User\Desktop\Finale\FarmVille\FarmVille\obj\Debug\FarmVille.pdb
+E:\FarmVille\FarmVille\obj\Debug\FarmVille.DisplayFarm.resources

@@ -29,7 +29,7 @@ namespace FarmVille
 
         private void LoadImage(string imageName)
         {
-            picBoxChar.Image = Image.FromFile(@"..\..\Farmers" + imageName + ".png");
+            picBoxChar.Image = Image.FromFile(@"..\..\Farmers\" + imageName + ".png");
         }
 
         private void SetDefultValues(string charInfoBase)
@@ -38,7 +38,7 @@ namespace FarmVille
         }
 
 
-        public CharCreaterFirst(Farmer farmerRecived)
+        public CharCreaterFirst(Farmer farmerRecived, bool exists)
         {
             InitializeComponent();
             farmerWorkWith = farmerRecived;
@@ -47,6 +47,7 @@ namespace FarmVille
             charNameFeMale.Add("Ms Martha");
             charNameFeMale.Add("Bettie Boob");
             picBoxChar.SizeMode = PictureBoxSizeMode.StretchImage;
+            FirstLoadImage(exists);
         }
 
         private void cmbGender_SelectedIndexChanged(object sender, EventArgs e)

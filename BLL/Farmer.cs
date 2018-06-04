@@ -178,7 +178,7 @@ namespace BLL
         {
             List<Farmer> dataList = new List<Farmer>();
             Datahandler handler = new Datahandler();
-            DataTable dataRaw = handler.getUserInformation();
+            DataTable dataRaw = handler.AllUsers();
 
             foreach (DataRow dataItem in dataRaw.Rows)
             {

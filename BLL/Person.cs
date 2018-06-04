@@ -31,7 +31,7 @@ namespace BLL
 
         public Person(string userNamePrm = "Micheal", string userSurnamePrm = "Knight", string genderPrm = "Male", string birthDatePrm = "17-06-1952")
         {
-            this.UserID = userIDPrm;
+            
             this.UserName = UserName;
             this.UserSurname = UserSurname;
             this.Gender = genderPrm;

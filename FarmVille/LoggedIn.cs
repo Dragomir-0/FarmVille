@@ -67,11 +67,11 @@ namespace FarmVille
         {
             SaveLoad load = new SaveLoad();
 
-            List<string> savedData = load.LoadThis(cmbFarms.SelectedText);
+            List<string> savedData = load.LoadThis(cmbFarms.SelectedText, farmerWorkingWith);
             
             Farm farmToSend = new Farm(savedData[0], int.Parse(savedData[1]));
 
-            DisplayFarm theForm = new DisplayFarm(farmToSend);
+            DisplayFarm theForm = new DisplayFarm(farmToSend, farmerWorkingWith);
             theForm.Width = farmToSend.Size + 17;
             theForm.Height = farmToSend.Size + 40;
             theForm.Show();
