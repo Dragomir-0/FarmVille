@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BLL
 {
 	#region Exstra Math
@@ -51,6 +52,7 @@ namespace BLL
             string animalName;
             string animalInfo=null;
             int tempX, tempY;
+
             int takenX, takenY, takenSize;
 
 
@@ -68,10 +70,349 @@ namespace BLL
             {
                 case 3:
                     {
-                        
+                        for (int animalListNumber = 3; animalListNumber <= amountOfAnimals + 2; animalListNumber++)
+                        {
+                            foreach (Animal item in animalList)
+                            {                      //SplitInfo is a ExtentionClass
+                                if (farmInfoList[animalListNumber].SplitInfo(0) == item.AnimalSpecies)
+                                {
+                                    animalInfo = item.ToString();
+                                }
+                            }
+                            predatorORfood = animalInfo.SplitInfo(2);
+                            currentAnimalSizeCage = int.Parse(animalInfo.SplitInfo(3)) * 10;
+
+                            if (predatorORfood == "Predator")
+                            {
+                                tempX = farmSize - currentAnimalSizeCage;
+                                tempY = farmSize - currentAnimalSizeCage;
+                                amount = int.Parse(farmInfoList[animalListNumber].SplitInfo(1));
+                                string tempCoOrdinates = null;
+                                int forLoopCounterCounter = 1;
+                                AnimalSize = int.Parse(animalInfo.SplitInfo(3));
+                                int counter = amount / 10;
+
+                                if (amount % 10 == 0)
+                                {
+                                    forLoopCounterCounter = 0;
+                                    counter--;
+                                }
+
+
+                                for (int i = (amount / 10) + forLoopCounterCounter; i > 0; i--)
+                                {
+
+
+                                    int tempSize;
+                                    if (i == 1)
+                                    {
+                                        tempSize = (amount - counter * 10) * AnimalSize;
+                                    }
+                                    else
+                                    {
+                                        tempSize = 10 * AnimalSize;
+                                    }
+
+
+                                    foreach (string coOrdinateItem in coOrdinateList)
+                                    {
+                                        string[] lines = coOrdinateItem.Split(',');
+                                        takenX = int.Parse(lines[1]);
+                                        takenY = int.Parse(lines[2]);
+                                        takenSize = int.Parse(lines[3]);
+                                        if (((tempX >= takenX) && (tempX <= takenX + takenSize)) && ((tempY >= takenY) && (tempY <= takenY + takenSize))
+                                                                                                      || // OR
+                                           ((tempX + currentAnimalSizeCage >= takenX) && (tempX <= takenX + takenSize)) && ((tempY + currentAnimalSizeCage >= takenY) && (tempY <= takenY + takenSize)))
+                                        {
+                                            tempY = takenY - takenSize - 1;
+                                            if (tempY - currentAnimalSizeCage < 0)
+                                            {
+                                                tempY = farmSize - currentAnimalSizeCage;
+                                                tempX = takenX - 1 - takenSize;
+
+                                                if (tempX - currentAnimalSizeCage <= 0)
+                                                {
+                                                    //There is no space
+                                                    //Simulation failed
+                                                }
+                                                else
+                                                {
+                                                    // Animal Species                                 // Type Prey or Predator
+                                                    tempCoOrdinates = string.Format("{0},{1},{2},{3},{4}", animalInfo.SplitInfo(1), tempX, tempY, tempSize, animalInfo.SplitInfo(2));
+                                                }
+                                            }
+                                            else
+                                            {
+                                                // Animal Species                                 // Type Prey or Predator
+                                                tempCoOrdinates = string.Format("{0},{1},{2},{3},{4}", animalInfo.SplitInfo(1), tempX, tempY, tempSize, animalInfo.SplitInfo(2));
+                                            }
+                                        }
+                                        else
+                                        {                                                          // Animal Species                                 // Type Prey or Predator
+                                            tempCoOrdinates = string.Format("{0},{1},{2},{3},{4}", animalInfo.SplitInfo(1), tempX, tempY, tempSize, animalInfo.SplitInfo(2));
+                                        }
+
+                                    }
+                                    coOrdinateList.Add(tempCoOrdinates);
+                                }
+                            }// Predator
+                            else
+                            {
+                                if (predatorORfood == "Prey")
+                                {
+                                    tempX = 0;
+                                    tempY = 0;
+                                    amount = int.Parse(farmInfoList[animalListNumber].SplitInfo(1));
+                                    string tempCoOrdinates = null;
+                                    int forLoopCounterCounter = 1;
+                                    AnimalSize = int.Parse(animalInfo.SplitInfo(3));
+                                    int counter = amount / 10;
+
+                                    if (amount % 10 == 0)
+                                    {
+                                        forLoopCounterCounter = 0;
+                                        counter--;
+                                    }
+
+
+                                    for (int i = (amount / 10) + forLoopCounterCounter; i > 0; i--)
+                                    {
+
+
+                                        int tempSize;
+                                        if (i == 1)
+                                        {
+                                            tempSize = (amount - counter * 10) * AnimalSize;
+                                        }
+                                        else
+                                        {
+                                            tempSize = 10 * AnimalSize;
+                                        }
+
+
+                                        foreach (string coOrdinateItem in coOrdinateList)
+                                        {
+                                            string[] lines = coOrdinateItem.Split(',');
+                                            takenX = int.Parse(lines[1]);
+                                            takenY = int.Parse(lines[2]);
+                                            takenSize = int.Parse(lines[3]);
+                                            if (((tempX >= takenX) && (tempX <= takenX + takenSize)) && ((tempY >= takenY) && (tempY <= takenY + takenSize))
+                                                                                                  || // OR
+                                            ((tempX + currentAnimalSizeCage >= takenX) && (tempX <= takenX + takenSize)) && ((tempY + currentAnimalSizeCage >= takenY) && (tempY <= takenY + takenSize)))
+                                            {
+                                                tempY = takenY + takenSize + 1;
+                                                if (tempY + currentAnimalSizeCage > farmSize)
+                                                {
+                                                    tempY = 0;
+                                                    tempX = takenX + 10 + takenSize;
+
+                                                    if (tempX + currentAnimalSizeCage >= farmSize)
+                                                    {
+                                                        //There is no space
+                                                        //Simulation failed
+                                                    }
+                                                    else
+                                                    {
+                                                        // Animal Species                                 // Type Prey or Predator
+                                                        tempCoOrdinates = string.Format("{0},{1},{2},{3},{4}", animalInfo.SplitInfo(1), tempX, tempY, tempSize, animalInfo.SplitInfo(2));
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    // Animal Species                                 // Type Prey or Predator
+                                                    tempCoOrdinates = string.Format("{0},{1},{2},{3},{4}", animalInfo.SplitInfo(1), tempX, tempY, tempSize, animalInfo.SplitInfo(2));
+                                                }
+                                            }
+                                            else
+                                            {                                                          // Animal Species                                 // Type Prey or Predator
+                                                tempCoOrdinates = string.Format("{0},{1},{2},{3},{4}", animalInfo.SplitInfo(1), tempX, tempY, tempSize, animalInfo.SplitInfo(2));
+                                            }
+
+                                        }
+                                        coOrdinateList.Add(tempCoOrdinates);
+                                        tempY++;
+
+                                    }
+
+
+                                }// Prey IF
+
+                            }
+                        }
                     }
                     break;
-                case 4: { } break;
+                case 4:
+                    {
+                        for (int animalListNumber = 3; animalListNumber <= amountOfAnimals + 2; animalListNumber++)
+                        {
+                            foreach (Animal item in animalList)
+                            {                      //SplitInfo is a ExtentionClass
+                                if (farmInfoList[animalListNumber].SplitInfo(0) == item.AnimalSpecies)
+                                {
+                                    animalInfo = item.ToString();
+                                }
+                            }
+                            predatorORfood = animalInfo.SplitInfo(2);
+                            currentAnimalSizeCage = int.Parse(animalInfo.SplitInfo(3)) * 10;
+
+                            if (predatorORfood == "Predator")
+                            {
+                                tempX = farmSize - currentAnimalSizeCage;
+                                tempY = farmSize - currentAnimalSizeCage;
+                                amount = int.Parse(farmInfoList[animalListNumber].SplitInfo(1));
+                                string tempCoOrdinates = null;
+                                int forLoopCounterCounter = 1;
+                                AnimalSize = int.Parse(animalInfo.SplitInfo(3));
+                                int counter = amount / 10;
+
+                                if (amount % 10 == 0)
+                                {
+                                    forLoopCounterCounter = 0;
+                                    counter--;
+                                }
+
+
+                                for (int i = (amount / 10) + forLoopCounterCounter; i > 0; i--)
+                                {
+
+
+                                    int tempSize;
+                                    if (i == 1)
+                                    {
+                                        tempSize = (amount - counter * 10) * AnimalSize;
+                                    }
+                                    else
+                                    {
+                                        tempSize = 10 * AnimalSize;
+                                    }
+
+
+                                    foreach (string coOrdinateItem in coOrdinateList)
+                                    {
+                                        string[] lines = coOrdinateItem.Split(',');
+                                        takenX = int.Parse(lines[1]);
+                                        takenY = int.Parse(lines[2]);
+                                        takenSize = int.Parse(lines[3]);
+                                        if (((tempX >= takenX) && (tempX <= takenX + takenSize)) && ((tempY >= takenY) && (tempY <= takenY + takenSize))
+                                                                                                      || // OR
+                                           ((tempX + currentAnimalSizeCage >= takenX) && (tempX <= takenX + takenSize)) && ((tempY + currentAnimalSizeCage >= takenY) && (tempY <= takenY + takenSize)))
+                                        {
+                                            tempY = takenY - takenSize - 1;
+                                            if (tempY - currentAnimalSizeCage < 0)
+                                            {
+                                                tempY = farmSize - currentAnimalSizeCage;
+                                                tempX = takenX - 1 - takenSize;
+
+                                                if (tempX - currentAnimalSizeCage <= 0)
+                                                {
+                                                    //There is no space
+                                                    //Simulation failed
+                                                }
+                                                else
+                                                {
+                                                    // Animal Species                                 // Type Prey or Predator
+                                                    tempCoOrdinates = string.Format("{0},{1},{2},{3},{4}", animalInfo.SplitInfo(1), tempX, tempY, tempSize, animalInfo.SplitInfo(2));
+                                                }
+                                            }
+                                            else
+                                            {
+                                                // Animal Species                                 // Type Prey or Predator
+                                                tempCoOrdinates = string.Format("{0},{1},{2},{3},{4}", animalInfo.SplitInfo(1), tempX, tempY, tempSize, animalInfo.SplitInfo(2));
+                                            }
+                                        }
+                                        else
+                                        {                                                          // Animal Species                                 // Type Prey or Predator
+                                            tempCoOrdinates = string.Format("{0},{1},{2},{3},{4}", animalInfo.SplitInfo(1), tempX, tempY, tempSize, animalInfo.SplitInfo(2));
+                                        }
+
+                                    }
+                                    coOrdinateList.Add(tempCoOrdinates);
+                                }
+                            }// Predator
+                            else
+                            {
+                                if (predatorORfood == "Prey")
+                                {
+                                    tempX = 0;
+                                    tempY = 0;
+                                    amount = int.Parse(farmInfoList[animalListNumber].SplitInfo(1));
+                                    string tempCoOrdinates = null;
+                                    int forLoopCounterCounter = 1;
+                                    AnimalSize = int.Parse(animalInfo.SplitInfo(3));
+                                    int counter = amount / 10;
+
+                                    if (amount % 10 == 0)
+                                    {
+                                        forLoopCounterCounter = 0;
+                                        counter--;
+                                    }
+
+
+                                    for (int i = (amount / 10) + forLoopCounterCounter; i > 0; i--)
+                                    {
+
+
+                                        int tempSize;
+                                        if (i == 1)
+                                        {
+                                            tempSize = (amount - counter * 10) * AnimalSize;
+                                        }
+                                        else
+                                        {
+                                            tempSize = 10 * AnimalSize;
+                                        }
+
+
+                                        foreach (string coOrdinateItem in coOrdinateList)
+                                        {
+                                            string[] lines = coOrdinateItem.Split(',');
+                                            takenX = int.Parse(lines[1]);
+                                            takenY = int.Parse(lines[2]);
+                                            takenSize = int.Parse(lines[3]);
+                                            if (((tempX >= takenX) && (tempX <= takenX + takenSize)) && ((tempY >= takenY) && (tempY <= takenY + takenSize))
+                                                                                                  || // OR
+                                            ((tempX + currentAnimalSizeCage >= takenX) && (tempX <= takenX + takenSize)) && ((tempY + currentAnimalSizeCage >= takenY) && (tempY <= takenY + takenSize)))
+                                            {
+                                                tempY = takenY + takenSize + 1;
+                                                if (tempY + currentAnimalSizeCage > farmSize)
+                                                {
+                                                    tempY = 0;
+                                                    tempX = takenX + 10 + takenSize;
+
+                                                    if (tempX + currentAnimalSizeCage >= farmSize)
+                                                    {
+                                                        //There is no space
+                                                        //Simulation failed
+                                                    }
+                                                    else
+                                                    {
+                                                        // Animal Species                                 // Type Prey or Predator
+                                                        tempCoOrdinates = string.Format("{0},{1},{2},{3},{4}", animalInfo.SplitInfo(1), tempX, tempY, tempSize, animalInfo.SplitInfo(2));
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    // Animal Species                                 // Type Prey or Predator
+                                                    tempCoOrdinates = string.Format("{0},{1},{2},{3},{4}", animalInfo.SplitInfo(1), tempX, tempY, tempSize, animalInfo.SplitInfo(2));
+                                                }
+                                            }
+                                            else
+                                            {                                                          // Animal Species                                 // Type Prey or Predator
+                                                tempCoOrdinates = string.Format("{0},{1},{2},{3},{4}", animalInfo.SplitInfo(1), tempX, tempY, tempSize, animalInfo.SplitInfo(2));
+                                            }
+
+                                        }
+                                        coOrdinateList.Add(tempCoOrdinates);
+                                        tempY++;
+
+                                    }
+
+
+                                }// Prey IF
+
+                            }
+                        }
+                    } break;
                 case 5:
                     {
                         for (int animalListNumber = 3; animalListNumber <= amountOfAnimals+2; animalListNumber++)
@@ -243,7 +584,6 @@ namespace BLL
                                
                             }
                         }
-
                     }
                     break;
                 default:
@@ -253,8 +593,7 @@ namespace BLL
             return coOrdinateList;
         }
 
-
-public void HandleNewAnimals(List<string> farmInfoList , string farmName)
+        public void HandleNewAnimals(List<string> farmInfoList, string farmName)
         {
 
             int amountOfAnimals = int.Parse(farmInfoList[2]);
@@ -300,7 +639,6 @@ public void HandleNewAnimals(List<string> farmInfoList , string farmName)
             
 
         }
-
         
     }
     #endregion
