@@ -75,6 +75,8 @@ Like" + "  \"/\" \"\\\" \"?\" \"!\" \"<\" \">\" "); MessageBox.Show(a); };
             farmer.InsertUser();
             MessageBox.Show(@"Welcome {0}!!!
 You are now a Farmer!!!",farmer.UserName);
+            CharCreaterFirst charForm = new CharCreaterFirst(farmer, false);
+            this.Close();
 
         }
     }

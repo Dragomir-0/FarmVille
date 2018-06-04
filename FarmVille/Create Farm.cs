@@ -159,7 +159,7 @@ namespace FarmVille
                 default:
                     break;
             }
-            save.SaveThis(dataToSave, farmToSave);
+            save.SaveThis(dataToSave, farmToSave, farmerWorkingWith);
 
             LoggedIn frmLogged = new LoggedIn(farmerWorkingWith);
         }

@@ -19,6 +19,19 @@ namespace FarmVille
         Create_Farm frmCrate;
         Farmer farmerWorkingWith;
 
+        private void FirstLoadImage()
+        {
+            SaveLoad loadImage = new SaveLoad();
+            pbUserPfp.SizeMode = PictureBoxSizeMode.StretchImage;
+            LoadImage(loadImage.LoadThisChar(farmerWorkingWith));
+
+        }
+
+        private void LoadImage(string imageName)
+        {
+            pbUserPfp.Image = Image.FromFile(@"..\..\Farmers\" + imageName + ".png");
+        }
+
         public LoggedIn(Farmer farmerRecieved)
         {
 
@@ -76,6 +89,16 @@ namespace FarmVille
             theForm.Height = farmToSend.Size + 40;
             theForm.Show();
             theForm.Activate();
+        }
+
+        private void characterCreatorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void characterCreatorToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            CharCreaterFirst creatForm = new CharCreaterFirst(farmerWorkingWith, true);
         }
     }
 }

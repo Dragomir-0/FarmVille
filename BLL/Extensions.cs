@@ -115,6 +115,7 @@ namespace BLL
             string gender = null;
             string name = null;
             string shirt = null;
+            string colour = null;
 
             if (dataToConvert.Length == 5)
             {
@@ -129,9 +130,9 @@ namespace BLL
                 if (identifiers[1].Equals("2")) name = "Young John";
             }
 
-            if (identifiers[3].Equals("B")) gender = "0";
-            if (identifiers[3].Equals("G")) gender = "1";
-            if (identifiers[3].Equals("R")) gender = "2";
+            if (identifiers[3].Equals("B")) { gender = "0"; colour = " Blue"; }
+            if (identifiers[3].Equals("G")) { gender = "1"; colour = "Green"; }
+            if (identifiers[3].Equals("R")) { gender = "2"; colour = " Red"; }
 
             charToRetreive = string.Format(gender + Changebles.splitOn + name + Changebles.splitOn +
                 shirt);

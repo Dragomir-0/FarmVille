@@ -34,6 +34,19 @@ namespace FarmVille
 
         private void SetDefultValues(string charInfoBase)
         {
+            charInfoBase = charInfoBase.FromCharFile();
+
+            //Gender
+            cmbGender.SelectedText = charInfoBase.SplitInfo(0);
+
+            //Names
+            cmbGender.SelectedText = charInfoBase.SplitInfo(1);
+
+            //Shirt
+            shirt = int.Parse(charInfoBase.SplitInfo(2));
+            lblOutfitText.Text = charInfoBase.SplitInfo(3);
+            
+
 
         }
 
