@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace FileHandler
+namespace BLL
 {
     [Serializable]
     public class WriteException : Exception

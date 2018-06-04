@@ -72,6 +72,7 @@
             this.lblBackdrop.Size = new System.Drawing.Size(40, 17);
             this.lblBackdrop.TabIndex = 2;
             this.lblBackdrop.Text = "Farm";
+            this.lblBackdrop.Visible = false;
             // 
             // lblBackdropText
             // 
@@ -81,6 +82,8 @@
             this.lblBackdropText.Size = new System.Drawing.Size(86, 17);
             this.lblBackdropText.TabIndex = 3;
             this.lblBackdropText.Text = "Desert Farm";
+            this.lblBackdropText.Visible = false;
+            this.lblBackdropText.Click += new System.EventHandler(this.lblBackdropText_Click);
             // 
             // lblOutfitText
             // 
@@ -165,6 +168,7 @@
             this.btnBackPrev.TabIndex = 14;
             this.btnBackPrev.Text = "<";
             this.btnBackPrev.UseVisualStyleBackColor = true;
+            this.btnBackPrev.Visible = false;
             // 
             // btnBackNest
             // 
@@ -174,6 +178,7 @@
             this.btnBackNest.TabIndex = 13;
             this.btnBackNest.Text = ">";
             this.btnBackNest.UseVisualStyleBackColor = true;
+            this.btnBackNest.Visible = false;
             // 
             // btnAccept
             // 

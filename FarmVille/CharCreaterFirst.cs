@@ -7,18 +7,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL;
 
 namespace FarmVille
 {
     public partial class CharCreaterFirst : Form
     {
+        Farmer farmerWorkWith;
         List<string> charNameMale = new List<string>();
         List<string> charNameFeMale = new List<string>();
         int shirt = 0;
 
-        public CharCreaterFirst()
+        private void FirstLoadImage(bool exists)
+        {
+            SaveLoad loadImage = new SaveLoad();
+            if (!exists) LoadImage("F1CB");
+            if (exists) SetDefultValues(loadImage.LoadThisChar(farmerWorkWith));
+            if (exists) LoadImage(loadImage.LoadThisChar(farmerWorkWith));
+
+        }
+
+        private void LoadImage(string imageName)
+        {
+            picBoxChar.Image = Image.FromFile(@"..\..\Farmers" + imageName + ".png");
+        }
+
+        private void SetDefultValues(string charInfoBase)
+        {
+
+        }
+
+
+        public CharCreaterFirst(Farmer farmerRecived)
         {
             InitializeComponent();
+            farmerWorkWith = farmerRecived;
             charNameMale.Add("Ou Piet");
             charNameMale.Add("Young John");
             charNameFeMale.Add("Ms Martha");
@@ -47,19 +70,19 @@ namespace FarmVille
                 switch (shirt)
                 {
                     case 0:
-                        //Display F1CB
+                        LoadImage("F1CB");
                         break;
 
                     case 1:
-                        //Display F1CG
+                        LoadImage("F1CG");
                         break;
 
                     case 2:
-                        //Display F1CR
+                        LoadImage("F1CR");
                         break;
 
                     default:
-                        //Display F1CB
+                        LoadImage("F1CB");
                         break;
                 }
             }
@@ -70,19 +93,19 @@ namespace FarmVille
                     switch (shirt)
                     {
                         case 0:
-                            //Display F1CB
+                            LoadImage("F1CB");
                             break;
 
                         case 1:
-                            //Display F1CG
+                            LoadImage("F1CG");
                             break;
 
                         case 2:
-                            //Display F1CR
+                            LoadImage("F1CR");
                             break;
 
                         default:
-                            //Display F1CB
+                            LoadImage("F1CB");
                             break;
                     }
                 }
@@ -91,19 +114,19 @@ namespace FarmVille
                     switch (shirt)
                     {
                         case 0:
-                            //Display F1CB
+                            LoadImage("F1CB");
                             break;
 
                         case 1:
-                            //Display F1CG
+                            LoadImage("F1CG");
                             break;
 
                         case 2:
-                            //Display F1CR
+                            LoadImage("F1CR");
                             break;
                         
                         default:
-                            //Display F1CB
+                            LoadImage("F1CB");
                             break;
                     }
                 }
@@ -112,19 +135,19 @@ namespace FarmVille
                     switch (shirt)
                     {
                         case 0:
-                            //Display F2CB
+                            LoadImage("F2CB");
                             break;
 
                         case 1:
-                            //Display F2CG
+                            LoadImage("F2CG");
                             break;
 
                         case 2:
-                            //Display F2CR
+                            LoadImage("F2CR");
                             break;
 
                         default:
-                            //Display F2CB
+                            LoadImage("F2CB");
                             break;
                     }
                 }
@@ -137,19 +160,19 @@ namespace FarmVille
                     switch (shirt)
                     {
                         case 0:
-                            //Display F1CBF
+                            LoadImage("F1CBF");
                             break;
 
                         case 1:
-                            //Display F1CGF
+                            LoadImage("F1CGF");
                             break;
 
                         case 2:
-                            //Display F1CRF
+                            LoadImage("F1CRF");
                             break;
 
                         default:
-                            //Display F1CBF
+                            LoadImage("F1CBF");
                             break;
                     }
                 }
@@ -158,19 +181,19 @@ namespace FarmVille
                     switch (shirt)
                     {
                         case 0:
-                            //Display F2CBF
+                            LoadImage("F2CBF");
                             break;
 
                         case 1:
-                            //Display F2CGF
+                            LoadImage("F2CGF");
                             break;
 
                         case 2:
-                            //Display F2CRF
+                            LoadImage("F2CRF");
                             break;
 
                         default:
-                            //Display F2CBF
+                            LoadImage("F2CBF");
                             break;
                     }
                 }
@@ -195,8 +218,19 @@ namespace FarmVille
         {
             SaveLoad saveConfig = new SaveLoad();
 
+            string saveThis = string.Format(cmbGender.SelectedText + Changebles.splitOn + cmbChar.SelectedText + Changebles.splitOn +
+                shirt.ToString());
+
+            saveThis = saveThis.ToCharFile();
+
+            saveConfig.SaveThisChar(saveThis, farmerWorkWith);
+
             
-            
+        }
+
+        private void lblBackdropText_Click(object sender, EventArgs e)
+        {
+
         }
 
         //public string CharConfig()
@@ -206,7 +240,7 @@ namespace FarmVille
         //    //Shirt
         //    //BackColour
         //    string GenCharShirBack = 
-            
+
         //}
     }
 }

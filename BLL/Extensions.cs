@@ -82,11 +82,60 @@ namespace BLL
         public static string ToCharFile(this string dataToConvert)
         {
             string charToSave;
+            string gender = null;
+            string name = null;
+            string shirt = null;
+
+            //Gender
+            if (dataToConvert.SplitInfo(0).Equals("Male")) gender = null;            
+            if (dataToConvert.SplitInfo(0).Equals("Female")) gender = "F";
+
+            if (dataToConvert.SplitInfo(1).Equals("Ou Piet") || dataToConvert.SplitInfo(1).Equals("Ms Martha")) name = "1";
+            if (dataToConvert.SplitInfo(1).Equals("Young John") || dataToConvert.SplitInfo(1).Equals("Bettie Boob")) name = "2";
+
+            if (dataToConvert.SplitInfo(3).Equals("0")) gender = "B";
+            if (dataToConvert.SplitInfo(3).Equals("1")) gender = "G";
+            if (dataToConvert.SplitInfo(3).Equals("2")) gender = "R";
+
+
+            charToSave = string.Format("F" + name + "C" +  shirt + gender);
+
 
 
 
 
             return charToSave;
+        }
+
+        public static string FromCharFile(this string dataToConvert)
+        {
+
+            string charToRetreive;
+            char[] identifiers = dataToConvert.ToCharArray();
+            string gender = null;
+            string name = null;
+            string shirt = null;
+
+            if (dataToConvert.Length == 5)
+            {
+                gender = "Female";
+                if (identifiers[1].Equals("1")) name = "Ms Martha";
+                if (identifiers[1].Equals("2")) name = "Bettie Boob";
+            }
+            else
+            {
+                gender = "Male";
+                if (identifiers[1].Equals("1")) name = "Ou Piet";
+                if (identifiers[1].Equals("2")) name = "Young John";
+            }
+
+            if (identifiers[3].Equals("B")) gender = "0";
+            if (identifiers[3].Equals("G")) gender = "1";
+            if (identifiers[3].Equals("R")) gender = "2";
+
+            charToRetreive = string.Format(gender + Changebles.splitOn + name + Changebles.splitOn +
+                shirt);
+            return charToRetreive;
         }
     }
 
